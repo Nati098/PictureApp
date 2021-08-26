@@ -56,9 +56,9 @@ class PODFragment : Fragment() {
     }
 
     private fun bindView() {
-        binding.textInputSearch.setEndIconOnClickListener {
+        binding.searchTextInput.setEndIconOnClickListener {
             startActivity(Intent(Intent.ACTION_VIEW).apply {
-                data = Uri.parse("https://en.wikipedia.org/wiki/${binding.textInputEditSearch.text.toString()}")
+                data = Uri.parse("https://en.wikipedia.org/wiki/${binding.searchTextInputEdit.text.toString()}")
             })
         }
 
@@ -93,30 +93,14 @@ class PODFragment : Fragment() {
         (activity as MainActivity).setSupportActionBar(bottomAppBar)
         setHasOptionsMenu(true)
 
-//        binding.bottomAppBarFab.setOnClickListener {
-//            if (isMainFragment) {
-//                binding.bottomAppBar.navigationIcon = null
-//                binding.bottomAppBar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_END
-//                binding.bottomAppBarFab.setImageDrawable(context?.let { c -> ContextCompat.getDrawable(c, R.drawable.ic_hamburger_menu_bottom_bar) })
-//                binding.bottomAppBar.replaceMenu(R.menu.menu_bottom_bar_fab)
-//            }
-//            else {
-//                binding.bottomAppBar.navigationIcon = context?.let { c -> ContextCompat.getDrawable(c, R.drawable.ic_hamburger_menu_bottom_bar) }
-//                binding.bottomAppBar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_CENTER
-//                binding.bottomAppBarFab.setImageDrawable(context?.let { c -> ContextCompat.getDrawable(c, R.drawable.ic_plus_fab) })
-//                binding.bottomAppBar.replaceMenu(R.menu.menu_bottom_bar_main)
-//            }
-//
-//            isMainFragment = !isMainFragment
-//        }
-        binding.bottomAppBarFab.setOnClickListener { v -> onCLickListenerFab(v, "Added to favourites") }
+        binding.fab.setOnClickListener { v -> onCLickListenerFab(v, "Added to favourites") }
 
         binding.scrollView.setOnScrollChangeListener { _, _, scrollY, _, _ ->
             if (scrollY > 0) {
-                moveFabToEnd(context, binding.bottomAppBar, binding.bottomAppBarFab)
+                moveFabToEnd(context, binding.bottomAppBar, binding.fab)
             }
             else if (scrollY < 22) {
-                moveFabToCenter(context, binding.bottomAppBar, binding.bottomAppBarFab)
+                moveFabToCenter(context, binding.bottomAppBar, binding.fab)
             }
         }
     }
@@ -149,7 +133,7 @@ class PODFragment : Fragment() {
     private fun renderImage(url: String) {
         binding.image.visibility = View.VISIBLE
         binding.chipsLayout.chipsLayout.visibility = View.VISIBLE
-        binding.progressLoading.visibility = View.GONE
+        binding.loadingProgressBar.visibility = View.GONE
 
         binding.image.load(url) {
             lifecycle(this@PODFragment)
@@ -167,13 +151,13 @@ class PODFragment : Fragment() {
     private fun renderLoading() {
         binding.image.visibility = View.GONE
         binding.chipsLayout.chipsLayout.visibility = View.GONE
-        binding.progressLoading.visibility = View.VISIBLE
+        binding.loadingProgressBar.visibility = View.VISIBLE
     }
 
     private fun renderError(message: String? = null) {
         binding.image.visibility = View.VISIBLE
         binding.chipsLayout.chipsLayout.visibility = View.VISIBLE
-        binding.progressLoading.visibility = View.GONE
+        binding.loadingProgressBar.visibility = View.GONE
         binding.image.setImageResource(R.drawable.ic_load_error)
 
         toast(message ?: "Unknown error")
