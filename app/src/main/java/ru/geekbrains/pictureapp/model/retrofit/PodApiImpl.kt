@@ -6,20 +6,18 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import ru.geekbrains.pictureapp.model.PODApi
+import ru.geekbrains.pictureapp.model.PodApi
 import java.io.IOException
 
-class PODRetrofitImpl {
+class PodApiImpl {
 
-    private val baseUrl = "https://api.nasa.gov/"
-
-    fun getRetrofitImpl(): PODApi {
+    fun getRetrofitImpl(): PodApi {
         val podRetrofit = Retrofit.Builder()
-            .baseUrl(baseUrl)
+            .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create(GsonBuilder().setLenient().create()))
             .client(createOkHttpClient(PODInterceptor()))
             .build()
-        return podRetrofit.create(PODApi::class.java)
+        return podRetrofit.create(PodApi::class.java)
     }
 
     private fun createOkHttpClient(interceptor: Interceptor): OkHttpClient {
@@ -35,5 +33,9 @@ class PODRetrofitImpl {
         override fun intercept(chain: Interceptor.Chain): okhttp3.Response {
             return chain.proceed(chain.request())
         }
+    }
+
+    companion object {
+        private const val BASE_URL = "https://api.nasa.gov/"
     }
 }

@@ -2,7 +2,7 @@ package ru.geekbrains.pictureapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import ru.geekbrains.pictureapp.ui.pod.PODFragment
+import ru.geekbrains.pictureapp.ui.pod.PodFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -11,7 +11,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.main_activity)
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                    .replace(R.id.container_main_activity, PODFragment.newInstance())
+                    .replace(R.id.container_main_activity, PodFragment.newInstance())
                     .commitNow()
         }
     }

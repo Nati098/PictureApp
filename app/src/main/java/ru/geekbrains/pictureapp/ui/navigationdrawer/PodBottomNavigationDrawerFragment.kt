@@ -9,7 +9,7 @@ import ru.geekbrains.pictureapp.R
 import ru.geekbrains.pictureapp.databinding.BottomNavigationLayoutBinding
 import ru.geekbrains.pictureapp.ui.toast
 
-class PODBottomNavigationDrawerFragment : BottomSheetDialogFragment() {
+class PodBottomNavigationDrawerFragment : BottomSheetDialogFragment() {
 
     private var _binding: BottomNavigationLayoutBinding? = null
     private val binding get() = _binding!!
@@ -23,8 +23,8 @@ class PODBottomNavigationDrawerFragment : BottomSheetDialogFragment() {
         super.onActivityCreated(savedInstanceState)
         binding.navigation.setNavigationItemSelectedListener { item ->
             when(item.itemId) {
-                R.id.bottom_navigation_fav -> toast("Favourites")
-                R.id.bottom_navigation_send -> toast("Send to...")
+                R.id.bottom_navigation_fav -> context?.toast(R.string.menu_item_favourite)
+                R.id.bottom_navigation_send -> context?.toast(R.string.menu_item_send)
             }
             true
         }
