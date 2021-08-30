@@ -31,12 +31,13 @@ class PodFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = MainFragmentBinding.inflate(layoutInflater, container, false)
-        bindView()
         return binding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        bindView()
         viewModel.getPOD(null, null).observe(this@PodFragment, Observer<PodData> {renderData(it)})
     }
 
@@ -67,12 +68,12 @@ class PodFragment : Fragment() {
                 val isHd = binding.chipsLayout.hdChoiceChip.isChecked
                 when(chip.id) {
                     R.id.data_2_days_before_chip -> {
-                        viewModel.getPOD(getDaysAgo(2), isHd).observe(this@PodFragment, Observer<PodData> { renderData(it) })
+                        viewModel.getPOD(getDaysAgo(2), isHd).observe(this@PodFragment, { renderData(it) })
                     }
                     R.id.data_yesterday_chip -> {
-                        viewModel.getPOD(getDaysAgo(1), isHd).observe(this@PodFragment, Observer<PodData> { renderData(it) })
+                        viewModel.getPOD(getDaysAgo(1), isHd).observe(this@PodFragment, { renderData(it) })
                     }
-                    R.id.data_today_chip -> viewModel.getPOD(null, isHd).observe(this@PodFragment, Observer<PodData> { renderData(it) })
+                    R.id.data_today_chip -> viewModel.getPOD(null, isHd).observe(this@PodFragment, { renderData(it) })
                 }
             }
         }

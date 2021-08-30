@@ -7,7 +7,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import ru.geekbrains.pictureapp.model.PodApi
-import java.io.IOException
+
 
 class PodApiImpl {
 
@@ -15,7 +15,6 @@ class PodApiImpl {
         val podRetrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create(GsonBuilder().setLenient().create()))
-            .client(createOkHttpClient(PODInterceptor()))
             .build()
         return podRetrofit.create(PodApi::class.java)
     }
@@ -25,14 +24,6 @@ class PodApiImpl {
         httpClient.addInterceptor(interceptor)
         httpClient.addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
         return httpClient.build()
-    }
-
-
-    inner class PODInterceptor : Interceptor {
-        @Throws(IOException::class)
-        override fun intercept(chain: Interceptor.Chain): okhttp3.Response {
-            return chain.proceed(chain.request())
-        }
     }
 
     companion object {

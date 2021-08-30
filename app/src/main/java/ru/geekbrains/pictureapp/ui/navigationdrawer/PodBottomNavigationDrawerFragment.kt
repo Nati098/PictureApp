@@ -19,8 +19,9 @@ class PodBottomNavigationDrawerFragment : BottomSheetDialogFragment() {
         return binding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
         binding.navigation.setNavigationItemSelectedListener { item ->
             when(item.itemId) {
                 R.id.bottom_navigation_fav -> context?.toast(R.string.menu_item_favourite)
