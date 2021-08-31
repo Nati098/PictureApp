@@ -2,7 +2,6 @@ package ru.geekbrains.pictureapp.ui.pod
 
 import android.content.Intent
 import android.net.Uri
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.view.*
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -13,11 +12,9 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.chip.Chip
 import ru.geekbrains.pictureapp.*
 import ru.geekbrains.pictureapp.databinding.MainFragmentBinding
-import ru.geekbrains.pictureapp.model.PodData
-import ru.geekbrains.pictureapp.ui.interfaces.BaseContract
+import ru.geekbrains.pictureapp.model.data.PodServerResponseData
 import ru.geekbrains.pictureapp.ui.interfaces.BaseView
 import ru.geekbrains.pictureapp.ui.interfaces.PodContract
-import ru.geekbrains.pictureapp.ui.navigationdrawer.PodBottomNavigationDrawerFragment
 import ru.geekbrains.pictureapp.ui.toast
 import java.util.*
 
@@ -86,30 +83,22 @@ class PodFragment : PodContract.View, BaseView<MainFragmentBinding>() {
         }
     }
 
-    override fun showData(data: PodData) =
-        when(data) {
-            is PodData.Success -> {
-                val response = data.serverResponseData
-
-                if (response.mediaType != MEDIA_TYPE_IMAGE) {
-                    showError(getString(R.string.error_not_picture))
-                }
-                else {
-                    val url = response.url
-
-                    if (url.isNullOrEmpty()) {
-                        showError(getString(R.string.error_empty_url))
-                    }
-                    else {
-                        showImage(url)
-                        showImageInfo(response.title, response.explanation)
-                    }
-                }
-            }
-
-            is PodData.Loading -> showLoading()
-            is PodData.Error -> showError(data.error.message)
+    override fun showData(response: PodServerResponseData)  {
+        if (response.mediaType != MEDIA_TYPE_IMAGE) {
+            showError(getString(R.string.error_not_picture))
         }
+        else {
+            val url = response.url
+
+            if (url.isNullOrEmpty()) {
+                showError(getString(R.string.error_empty_url))
+            }
+            else {
+                showImage(url)
+                showImageInfo(response.title, response.explanation)
+            }
+        }
+    }
 
     private fun showImage(url: String) {
         binding.image.isVisible = true

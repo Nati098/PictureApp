@@ -5,7 +5,7 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 import ru.geekbrains.pictureapp.model.data.PodServerResponseData
 
-interface PodApi {
+interface ApiService {
 
     @GET("planetary/apod")
     fun getPictureOfTheDay(@Query("date") date: String?,
