@@ -17,4 +17,8 @@
     <string name="yesterday_chip">Yesterday</string>
     <string name="today_chip">Today</string>
     <string name="hd_chip">HD format</string>
+
+    <string name="error_not_picture">Today it\'s not a picture! See you next day!</string>
+    <string name="error_empty_url">URL is empty</string>
+    <string name="error_unknown">Unknown error</string>
 </resources>

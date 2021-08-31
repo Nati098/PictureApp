@@ -11,20 +11,20 @@ import ru.geekbrains.pictureapp.model.PodApi
 
 class PodApiImpl {
 
-    fun getRetrofitImpl(): PodApi {
+    fun getInstance(): PodApi {
         val podRetrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create(GsonBuilder().setLenient().create()))
             .build()
         return podRetrofit.create(PodApi::class.java)
     }
-
-    private fun createOkHttpClient(interceptor: Interceptor): OkHttpClient {
-        val httpClient = OkHttpClient.Builder()
-        httpClient.addInterceptor(interceptor)
-        httpClient.addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
-        return httpClient.build()
-    }
+//
+//    private fun createOkHttpClient(interceptor: Interceptor): OkHttpClient {
+//        val httpClient = OkHttpClient.Builder()
+//        httpClient.addInterceptor(interceptor)
+//        httpClient.addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+//        return httpClient.build()
+//    }
 
     companion object {
         private const val BASE_URL = "https://api.nasa.gov/"
