@@ -45,6 +45,7 @@ class PodFragment : PodContract.View, BaseView<MainFragmentBinding>() {
             })
         }
 
+        binding.chipsLayout.dataTodayChip.isChecked = true
         binding.chipsLayout.dataGroup.setOnCheckedChangeListener { group, position ->
             group.findViewById<Chip>(position)?.let { chip ->
                 val isHd = binding.chipsLayout.hdChoiceChip.isChecked

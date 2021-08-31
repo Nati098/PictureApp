@@ -47,7 +47,7 @@ abstract class BaseView<VB : ViewBinding> : BaseContract.View, Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId) {
             R.id.app_bar_weather -> context?.toast(R.string.temp_space_weather)
-            R.id.app_bar_settings -> context?.toast(R.string.temp_settings) //activity?.supportFragmentManager?.addFragment<ChipsFragment>(activity!!.applicationContext, Bundle(), R.id.container_main_activity)
+            R.id.app_bar_settings -> context?.toast(R.string.temp_settings)
             android.R.id.home -> activity?.let { PodBottomNavigationDrawerFragment().show(it.supportFragmentManager, "navigation_drawer") }
         }
 

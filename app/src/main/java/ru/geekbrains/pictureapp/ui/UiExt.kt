@@ -17,14 +17,3 @@ fun Context.toast(message: Int) = Toast.makeText(this, this.getString(message), 
     setGravity(Gravity.BOTTOM, 0, 250)
     show()
 }
-
-
-/* wandering between Fragments */
-inline fun <reified F: Fragment> createFragment(context: Context?, bundle: Bundle?): Fragment =
-        F::class.java.newInstance().apply { arguments = bundle }
-
-inline fun <reified F: Fragment> FragmentManager.addFragment(context: Context, bundle: Bundle, containerRes: Int) =
-        beginTransaction()
-                .add(containerRes, createFragment<F>(context, bundle))
-                .addToBackStack(null)
-                .commit()

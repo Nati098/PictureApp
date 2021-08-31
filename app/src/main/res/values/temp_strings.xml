@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE resources [
+    <!ENTITY in_develop "In developing">
+    ]>
+
 <resources>
 
-    <string name="in_develop">In developing</string>
-    <string name="temp_added_to_fav">Added to favourites: ${in_develop}</string>
-    <string name="temp_expandable_menu">Expandable menu: @string/in_develop</string>
-    <string name="temp_space_weather">Space Weather: {{in_develop}}</string>
-    <string name="temp_settings">Settings: @string/in_develop</string>
+    <string name="temp_added_to_fav">Added to favourites: &in_develop;</string>
+    <string name="temp_expandable_menu">Expandable menu: &in_develop;</string>
+    <string name="temp_space_weather">Space Weather: &in_develop;</string>
+    <string name="temp_settings">Settings: &in_develop;</string>
 
 </resources>
