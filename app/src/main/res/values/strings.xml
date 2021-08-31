@@ -1,3 +1,24 @@
 <resources>
-    <string name="app_name">Picture Of The Day</string>
+    <string name="app_name">NASA App</string>
+
+    <string name="wiki_search_hint">Search in wiki</string>
+    <string name="wiki_search_helper">Request length:</string>
+
+    <string name="menu_item_add_favourite">Add to favourites</string>
+    <string name="menu_item_favourite">Favourites</string>
+    <string name="menu_item_settings">Settings</string>
+    <string name="menu_item_weather">Space weather</string>
+    <string name="menu_item_send">Send to...</string>
+    <string name="menu_item_search">Search</string>
+
+    <string name="data_chips_group">Load picture from:</string>
+    <string name="pic_format_chips_group">Load picture in format:</string>
+    <string name="two_days_before_chip">2 days before</string>
+    <string name="yesterday_chip">Yesterday</string>
+    <string name="today_chip">Today</string>
+    <string name="hd_chip">HD format</string>
+
+    <string name="error_not_picture">Today it\'s not a picture! See you next day!</string>
+    <string name="error_empty_url">URL is empty</string>
+    <string name="error_unknown">Unknown error</string>
 </resources>

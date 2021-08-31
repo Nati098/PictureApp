@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/app_bar_weather"
+        android:icon="@drawable/ic_meteor"
+        android:title="@string/menu_item_weather"
+        app:iconTint="@color/white"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/bottom_navigation_add_to_fav"
+        android:icon="@drawable/ic_favourite"
+        android:title="@string/menu_item_add_favourite"
+        app:iconTint="@color/black"/>
+    <item
+        android:id="@+id/bottom_navigation_fav"
+        android:icon="@drawable/ic_favourite"
+        android:title="@string/menu_item_favourite"
+        app:iconTint="@color/black"/>
+    <item
+        android:id="@+id/bottom_navigation_send"
+        android:icon="@drawable/ic_send"
+        android:title="@string/menu_item_send"
+        app:iconTint="@color/white"/>
+    <item
+        android:id="@+id/app_bar_settings"
+        android:icon="@drawable/ic_settings"
+        android:title="@string/menu_item_settings"
+        app:showAsAction="ifRoom" />
+</menu>
