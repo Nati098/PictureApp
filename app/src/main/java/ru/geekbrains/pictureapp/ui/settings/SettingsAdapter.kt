@@ -1,6 +1,7 @@
 package ru.geekbrains.pictureapp.ui.settings
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,19 +25,19 @@ class SettingsAdapter(
     override fun getItemCount(): Int = settingsList.size
 
 
-    inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    inner class ViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
         private val title: TextView = view.findViewById(R.id.title)
         private val optionsGroup: ChipGroup = view.findViewById(R.id.options_group)
 
-        private val context: Context = view.context
-        private val options: List<Chip>? = null
-
         fun bind(item: SettingsListItem) {
+            Log.d("MyDebug", "${javaClass.simpleName} item.titleId=${item.titleId}")
             item.titleId?.let {
-                title.text = context.getString(it)
-                item.options.forEach { opt -> optionsGroup.addView(createChip(context, opt)) }
+                Log.d("MyDebug", "${javaClass.simpleName} item=${view.context.getString(it)}")
+                title.text = view.context.getString(it)
+                item.options.forEach { opt -> optionsGroup.addView(createChip(view.context, opt)) }
             }
 
+            Log.d("MyDebug", "${javaClass.simpleName} optionsGroup.childCount=${optionsGroup.childCount}")
             // TODO: (optionsGroup.childCount == 0)
         }
 

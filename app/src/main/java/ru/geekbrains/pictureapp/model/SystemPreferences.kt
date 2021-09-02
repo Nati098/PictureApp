@@ -15,7 +15,7 @@ object SystemPreferences {
     }
 
     fun getIntPreference(key: String): Int {
-        return getSP().getInt(key, -1)
+        return getSP().getInt(key, 0)
     }
 
     fun setPreference(key: String?, value: Int?) {
