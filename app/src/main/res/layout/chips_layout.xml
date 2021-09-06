@@ -15,7 +15,7 @@
 
     <com.google.android.material.chip.Chip
         android:id="@+id/hd_choice_chip"
-        style="@style/Widget.MaterialComponents.Chip.Choice"
+        style="@style/Widget.MaterialComponents.Chip.Choice.Custom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_small"
@@ -37,21 +37,21 @@
 
         <com.google.android.material.chip.Chip
             android:id="@+id/data_2_days_before_chip"
-            style="@style/Widget.MaterialComponents.Chip.Choice"
+            style="@style/Widget.MaterialComponents.Chip.Choice.Custom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/two_days_before_chip" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/data_yesterday_chip"
-            style="@style/Widget.MaterialComponents.Chip.Choice"
+            style="@style/Widget.MaterialComponents.Chip.Choice.Custom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/yesterday_chip" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/data_today_chip"
-            style="@style/Widget.MaterialComponents.Chip.Choice"
+            style="@style/Widget.MaterialComponents.Chip.Choice.Custom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/today_chip" />

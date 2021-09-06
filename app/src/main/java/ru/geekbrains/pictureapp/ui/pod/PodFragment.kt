@@ -3,7 +3,10 @@ package ru.geekbrains.pictureapp.ui.pod
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.view.*
+import android.view.ContextThemeWrapper
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isVisible
 import coil.api.load
@@ -11,19 +14,19 @@ import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.chip.Chip
 import ru.geekbrains.pictureapp.*
-import ru.geekbrains.pictureapp.databinding.MainFragmentBinding
+import ru.geekbrains.pictureapp.databinding.PodFragmentBinding
 import ru.geekbrains.pictureapp.model.data.PodServerResponseData
 import ru.geekbrains.pictureapp.ui.interfaces.BaseView
 import ru.geekbrains.pictureapp.ui.interfaces.PodContract
 import ru.geekbrains.pictureapp.ui.toast
 import java.util.*
 
-class PodFragment : PodContract.View, BaseView<MainFragmentBinding>() {
+class PodFragment : PodContract.View, BaseView<PodFragmentBinding>() {
 
     private lateinit var presenter: PodContract.Presenter
 
-    override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> MainFragmentBinding =
-        {layoutInflater: LayoutInflater, _, _ -> MainFragmentBinding.inflate(layoutInflater) }
+//    override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> PodFragmentBinding =
+//        { layoutInflater: LayoutInflater, _, _ -> PodFragmentBinding.inflate(layoutInflater) }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -37,6 +40,9 @@ class PodFragment : PodContract.View, BaseView<MainFragmentBinding>() {
         presenter = PodPresenter(this)
         acceptPresenter(presenter as PodPresenter)
     }
+
+    override fun bindLayout(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): PodFragmentBinding =
+        PodFragmentBinding.inflate(inflater.cloneInContext(ContextThemeWrapper(activity, requireActivity().theme)), container, false)
 
     override fun bindView() {
         binding.searchTextInput.setEndIconOnClickListener {

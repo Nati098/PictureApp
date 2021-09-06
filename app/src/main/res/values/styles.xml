@@ -5,4 +5,12 @@
         <item name="colorControlNormal">@color/white</item>
     </style>
 
+    <style name="Widget.MaterialComponents.Chip.Choice.Custom" parent="Widget.MaterialComponents.Chip.Choice">
+        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Chip.Custom</item>
+    </style>
+
+    <style name="TextAppearance.MaterialComponents.Chip.Custom" parent="TextAppearance.AppCompat.Body2">
+        <item name="android:fontFamily">@font/aguda_regular</item>
+    </style>
+
 </resources>
