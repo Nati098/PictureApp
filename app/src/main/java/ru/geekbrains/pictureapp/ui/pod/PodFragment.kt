@@ -1,12 +1,15 @@
 package ru.geekbrains.pictureapp.ui.pod
 
 import android.content.Intent
+import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
 import android.view.ContextThemeWrapper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.WebView
+import android.webkit.WebViewClient
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isVisible
 import coil.api.load
@@ -64,7 +67,6 @@ class PodFragment : PodContract.View, BaseView<PodFragmentBinding>() {
         }
 
         setBottomSheetBehaviour(binding.bottomSheetContainer.bottomSheetContainer)
-        setBottomBar(binding.bottomAppBar)
     }
 
     private fun getDaysAgo(daysAgo: Int): Date = Date(System.currentTimeMillis() - (1000 * 60 * 60 * 24)*daysAgo)
@@ -72,21 +74,6 @@ class PodFragment : PodContract.View, BaseView<PodFragmentBinding>() {
     private fun setBottomSheetBehaviour(bottomSheet: ConstraintLayout) {
         BottomSheetBehavior.from(bottomSheet).apply {
             state = BottomSheetBehavior.STATE_COLLAPSED
-        }
-    }
-
-    private fun setBottomBar(bottomAppBar: BottomAppBar) {
-        (activity as MainActivity).setSupportActionBar(bottomAppBar)
-        setHasOptionsMenu(true)
-
-        binding.fab.setOnClickListener { v -> onCLickListenerFab(v, R.string.temp_added_to_fav) }
-
-        binding.scrollView.setOnScrollChangeListener { _, _, scrollY, _, _ ->
-            if (scrollY > 0) {
-                moveFabToEnd(context, binding.bottomAppBar, binding.fab)
-            } else if (scrollY < SCROLL_Y_THRESHOLD) {
-                moveFabToCenter(context, binding.bottomAppBar, binding.fab)
-            }
         }
     }
 
@@ -101,14 +88,21 @@ class PodFragment : PodContract.View, BaseView<PodFragmentBinding>() {
                 showError(getString(R.string.error_empty_url))
             }
             else {
-                showImage(url)
-                showImageInfo(response.title, response.explanation)
+                if (response.mediaType != MEDIA_TYPE_IMAGE) {
+                    showVideo(url)
+                } else {
+                    showImage(url)
+                    showImageInfo(response.title, response.explanation)
+                }
             }
         }
     }
 
     private fun showImage(url: String) {
         binding.image.isVisible = true
+        binding.video.isVisible = false
+
+        binding.chipsLayout.hdChoiceChip.isVisible = true
         binding.chipsLayout.chipsLayout.isVisible = true
         binding.loadingProgressBar.isVisible = false
 
@@ -123,6 +117,28 @@ class PodFragment : PodContract.View, BaseView<PodFragmentBinding>() {
         binding.bottomSheetContainer.bottomSheetContainer.isVisible = !title.isNullOrBlank()
         binding.bottomSheetContainer.bottomSheetHeader.text = title
         binding.bottomSheetContainer.bottomSheetDescription.text = description
+    }
+
+    private fun showVideo(url: String) {
+        binding.image.isVisible = false
+        binding.chipsLayout.chipsLayout.isVisible = true
+        binding.chipsLayout.hdChoiceChip.isVisible = false
+
+        binding.video.settings.javaScriptEnabled = true
+        binding.video.webViewClient = object: WebViewClient() {
+            override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
+                super.onPageStarted(view, url, favicon)
+                binding.video.isVisible = false
+                binding.loadingProgressBar.isVisible = true
+            }
+
+            override fun onPageFinished(view: WebView?, url: String?) {
+                super.onPageFinished(view, url)
+                binding.video.isVisible = true
+                binding.loadingProgressBar.isVisible = false
+            }
+        }
+        binding.video.loadUrl(url)
     }
 
     override fun showLoading() {

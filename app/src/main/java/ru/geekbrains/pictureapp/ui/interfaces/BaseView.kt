@@ -42,11 +42,6 @@ abstract class BaseView<VB : ViewBinding> : BaseContract.View, Fragment() {
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(R.menu.menu_bottom_bar_main, menu)
-    }
-
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId) {
             R.id.app_bar_weather -> context?.toast(R.string.temp_space_weather)

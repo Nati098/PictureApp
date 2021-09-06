@@ -2,6 +2,7 @@ package ru.geekbrains.pictureapp.ui.pod
 
 import ru.geekbrains.pictureapp.BuildConfig
 import ru.geekbrains.pictureapp.model.PodData
+import ru.geekbrains.pictureapp.model.data.PodServerResponseData
 import ru.geekbrains.pictureapp.model.retrofit.WebApiService
 import ru.geekbrains.pictureapp.ui.interfaces.BasePresenter
 import ru.geekbrains.pictureapp.ui.interfaces.OnReceivingResponseListener
@@ -11,7 +12,7 @@ import java.util.*
 
 class PodPresenter(
     val view: PodContract.View,
-) : PodContract.Presenter, BasePresenter(), OnReceivingResponseListener {
+) : PodContract.Presenter, BasePresenter(), OnReceivingResponseListener<PodServerResponseData> {
 
     private var date: String? = null
     private var isHd: Boolean? = null
@@ -45,7 +46,7 @@ class PodPresenter(
         }
     }
 
-    override fun onSuccess(data: PodData.Success) {
+    override fun onSuccess(data: PodData.Success<PodServerResponseData>) {
         view.showData(data.serverResponseData)
     }
 

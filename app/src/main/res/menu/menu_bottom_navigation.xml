@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <group android:checkableBehavior="none">
-        <item
-            android:id="@+id/bottom_navigation_fav"
-            android:icon="@drawable/ic_favourite"
-            android:title="@string/menu_item_favourite"
-            android:iconTint="@color/black"/>
-        <item
-            android:id="@+id/bottom_navigation_send"
-            android:icon="@drawable/ic_send"
-            android:title="@string/menu_item_send" />
-    </group>
+    <item
+        android:id="@+id/nav_bar_pod"
+        android:icon="@drawable/ic_favourite"
+        android:title="@string/menu_item_pod" />
+    <item
+        android:id="@+id/nav_bar_nearest"
+        android:icon="@drawable/ic_meteor"
+        android:title="@string/menu_item_nearest" />
+
+    <item
+        android:id="@+id/nav_bar_settings"
+        android:icon="@drawable/ic_settings"
+        android:title="@string/menu_item_settings" />
+
+    <item
+        android:id="@+id/nav_bar_search"
+        android:icon="@drawable/ic_search"
+        android:title="@string/menu_item_search" />
 </menu>

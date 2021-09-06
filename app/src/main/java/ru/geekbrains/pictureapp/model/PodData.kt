@@ -1,9 +1,7 @@
 package ru.geekbrains.pictureapp.model
 
-import ru.geekbrains.pictureapp.model.data.PodServerResponseData
-
-sealed class PodData {
-    data class Success(val serverResponseData: PodServerResponseData) : PodData()
-    data class Error(val error: Throwable) : PodData()
-    data class Loading(val progress: Int?) : PodData()
+sealed class PodData<out ResponseData: Any> {
+    data class Success<out ResponseData: Any>(val serverResponseData: ResponseData) : PodData<ResponseData>()
+    data class Error(val error: Throwable) : PodData<Nothing>()
+    data class Loading(val progress: Int?) : PodData<Nothing>()
 }

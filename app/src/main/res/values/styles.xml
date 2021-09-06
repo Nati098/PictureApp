@@ -5,6 +5,15 @@
         <item name="colorControlNormal">@color/white</item>
     </style>
 
+    <style name="BottomNavigation">
+        <item name="android:background">?colorPrimary</item>
+        <item name="itemIconTint">?colorOnPrimary</item>
+        <item name="itemTextColor">?colorOnPrimary</item>
+        <item name="paddingStart">@dimen/padding_small</item>
+        <item name="paddingEnd">@dimen/padding_small</item>
+    </style>
+
+
     <style name="Widget.MaterialComponents.Chip.Choice.Custom" parent="Widget.MaterialComponents.Chip.Choice">
         <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Chip.Custom</item>
     </style>

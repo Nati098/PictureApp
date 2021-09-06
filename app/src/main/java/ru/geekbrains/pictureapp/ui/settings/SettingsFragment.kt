@@ -45,17 +45,17 @@ class SettingsFragment: SettingsContract.View, BaseView<SettingsFragmentBinding>
         binding.recycler.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         binding.recycler.adapter = SettingsAdapter(settingsList)
 
-//        binding.loadingProgressBar.isVisible = false
+        binding.loadingProgressBar.isVisible = false
         binding.recycler.isVisible = true
     }
 
     override fun updateUi() {
-        //activity?.recreate()
+        activity?.recreate()
     }
 
     override fun showLoading() {
-//        binding.loadingProgressBar.isVisible = true
-//        binding.recycler.isVisible = false
+        binding.loadingProgressBar.isVisible = true
+        binding.recycler.isVisible = false
     }
 
     override fun showError(message: String?) {}
