@@ -15,9 +15,9 @@
         android:padding="@dimen/padding_x_small">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="top">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="top">
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/search_text_input"
@@ -49,12 +49,12 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <include layout="@layout/chips_layout"
-                    android:id="@+id/chips_layout"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@id/search_text_input"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
+                android:id="@+id/chips_layout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/search_text_input"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
             <ru.geekbrains.pictureapp.ui.view.SquareImageView
                 android:id="@+id/image"
@@ -67,7 +67,7 @@
                 android:scaleType="fitCenter"
                 tools:srcCompat="@drawable/space_background"/>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.core.widget.NestedScrollView>
 
@@ -93,7 +93,7 @@
         app:fabAlignmentMode="center"
         app:fabCradleRoundedCornerRadius="50dp"
         app:menu="@menu/menu_bottom_bar_main"
-        app:backgroundTint="@color/design_default_color_primary"
+        app:backgroundTint="?attr/colorPrimary"
         app:navigationIcon="@drawable/ic_hamburger_menu_bottom_bar" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -102,7 +102,7 @@
         android:layout_height="wrap_content"
         app:layout_anchor="@id/bottom_app_bar"
         app:fabCustomSize="40dp"
-        app:backgroundTint="@color/design_default_color_primary_variant"
+        app:backgroundTint="?attr/colorPrimaryVariant"
         app:srcCompat="@drawable/ic_favourite"
         app:tint="@color/white"/>
 

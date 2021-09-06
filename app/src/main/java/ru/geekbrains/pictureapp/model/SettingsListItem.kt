@@ -4,19 +4,20 @@ import com.google.android.material.chip.ChipGroup
 
 class SettingsListItem (
     val titleId: Int?,
-    val options: List<Option> = emptyList(),  // здесь дб лист с объектами-опциями. Сейчас у опции только id заголовка
+    val optionWithResource: List<OptionWithResource> = emptyList(),  // здесь дб лист с объектами-опциями. Сейчас у опции только id заголовка
     private val activeOption: Int? = null,
     val onCheckedChangeListener: ChipGroup.OnCheckedChangeListener? = null
 ) {
 
     init {
-        options
-            .filter { it.titleId == activeOption }
+        optionWithResource
+            .filter { it.resId == activeOption }
             .forEach { it.isChecked = true}
     }
 
-    class Option(
+    class OptionWithResource(
         val titleId: Int,
+        val resId: Int? = null,
         var isChecked: Boolean = false
     )
 

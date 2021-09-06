@@ -19,8 +19,8 @@
     <string name="hd_chip">HD format</string>
 
     <string name="setting_theme_title">Themes</string>
-    <string name="setting_theme_light">Light</string>
-    <string name="setting_theme_dark">Dark</string>
+    <string name="setting_theme_space">Space</string>
+    <string name="setting_theme_mars">Mars</string>
     <string name="setting_font_title">Fonts</string>
     <string name="setting_font_default">Default</string>
     <string name="setting_font_montserrat">Montserrat</string>
@@ -30,4 +30,6 @@
     <string name="error_empty_url">URL is empty</string>
     <string name="error_unknown">Unknown error</string>
     <string name="error_empty_list">The list is empty</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

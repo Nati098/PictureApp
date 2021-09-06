@@ -34,20 +34,22 @@ class SettingsAdapter(
             item.titleId?.let {
                 Log.d("MyDebug", "${javaClass.simpleName} item=${view.context.getString(it)}")
                 title.text = view.context.getString(it)
-                item.options.forEach { opt -> optionsGroup.addView(createChip(view.context, opt)) }
+
+                item.optionWithResource.forEach { opt -> optionsGroup.addView(createChip(view.context, opt)) }
+                optionsGroup.setOnCheckedChangeListener(item.onCheckedChangeListener)
             }
 
             Log.d("MyDebug", "${javaClass.simpleName} optionsGroup.childCount=${optionsGroup.childCount}")
             // TODO: (optionsGroup.childCount == 0)
         }
 
-        private fun createChip(context: Context, option: SettingsListItem.Option): Chip =
+        private fun createChip(context: Context, optionWithResource: SettingsListItem.OptionWithResource): Chip =
             Chip(context, null, R.style.Widget_MaterialComponents_Chip_Choice).apply {
-                id = option.titleId
+                id = optionWithResource.titleId
                 height = ViewGroup.LayoutParams.WRAP_CONTENT
                 width = ViewGroup.LayoutParams.WRAP_CONTENT
-                setText(option.titleId)
-                isChecked = option.isChecked
+                setText(optionWithResource.titleId)
+                isChecked = optionWithResource.isChecked
             }
 
     }

@@ -12,7 +12,7 @@ import ru.geekbrains.pictureapp.ui.toast
 
 abstract class BaseView<VB : ViewBinding> : BaseContract.View, Fragment() {
 
-    protected abstract val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> VB
+    //protected abstract val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> VB
     private var presenter: BaseContract.Presenter<BaseView<VB>>? = null
 
     private var _binding: VB? = null
@@ -21,8 +21,10 @@ abstract class BaseView<VB : ViewBinding> : BaseContract.View, Fragment() {
     private var isViewCreated: Boolean = false
 
 
+    abstract fun bindLayout(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): VB
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        _binding = bindingInflater.invoke(layoutInflater, container, false)
+        _binding = bindLayout(inflater, container, savedInstanceState) //bindingInflater.invoke(inflater, container, false)
         isViewCreated = true
         return binding.root
     }

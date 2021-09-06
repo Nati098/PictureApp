@@ -2,10 +2,12 @@ package ru.geekbrains.pictureapp.ui.settings
 
 import android.os.Bundle
 import android.util.Log
+import android.view.ContextThemeWrapper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
+import androidx.recyclerview.widget.LinearLayoutManager
 import ru.geekbrains.pictureapp.R
 import ru.geekbrains.pictureapp.databinding.SettingsFragmentBinding
 import ru.geekbrains.pictureapp.ui.interfaces.BaseView
@@ -13,8 +15,8 @@ import ru.geekbrains.pictureapp.ui.interfaces.SettingsContract
 
 
 class SettingsFragment: SettingsContract.View, BaseView<SettingsFragmentBinding>() {
-    override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> SettingsFragmentBinding =
-        {layoutInflater: LayoutInflater, _, _ -> SettingsFragmentBinding.inflate(layoutInflater) }
+//    override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> SettingsFragmentBinding =
+//        {layoutInflater: LayoutInflater, _, _ -> SettingsFragmentBinding.inflate(layoutInflater) }
 
     private lateinit var presenter: SettingsContract.Presenter
     private lateinit var settingsAdapter: SettingsAdapter
@@ -28,6 +30,8 @@ class SettingsFragment: SettingsContract.View, BaseView<SettingsFragmentBinding>
         bindView()
     }
 
+    override fun bindLayout(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): SettingsFragmentBinding =
+        SettingsFragmentBinding.inflate(inflater.cloneInContext(ContextThemeWrapper(activity, requireActivity().theme)), container, false)
 
     override fun bindView() {
         val settingsList = presenter.getSettings()
@@ -38,6 +42,7 @@ class SettingsFragment: SettingsContract.View, BaseView<SettingsFragmentBinding>
             return
         }
 
+        binding.recycler.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         binding.recycler.adapter = SettingsAdapter(settingsList)
 
 //        binding.loadingProgressBar.isVisible = false
@@ -45,7 +50,7 @@ class SettingsFragment: SettingsContract.View, BaseView<SettingsFragmentBinding>
     }
 
     override fun updateUi() {
-        activity?.recreate()
+        //activity?.recreate()
     }
 
     override fun showLoading() {
@@ -53,9 +58,7 @@ class SettingsFragment: SettingsContract.View, BaseView<SettingsFragmentBinding>
 //        binding.recycler.isVisible = false
     }
 
-    override fun showError(message: String?) {
-        // TODO
-    }
+    override fun showError(message: String?) {}
 
     companion object {
         fun newInstance() = SettingsFragment()

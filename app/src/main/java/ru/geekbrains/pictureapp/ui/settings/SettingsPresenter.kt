@@ -14,31 +14,29 @@ class SettingsPresenter (
     override fun getSettings(): List<SettingsListItem> =
         arrayListOf<SettingsListItem>().apply {
             add(SettingsListItem(
-                R.layout.settings_list_card,
+                R.string.setting_theme_title,
                 listOf(
-                    SettingsListItem.Option(R.string.setting_theme_light),
-                    SettingsListItem.Option(R.string.setting_theme_dark)
+                    SettingsListItem.OptionWithResource(R.string.setting_theme_space, Theme.SPACE.code),
+                    SettingsListItem.OptionWithResource(R.string.setting_theme_mars, Theme.MARS.code)
                 ),
-                getActiveOption(SystemPreferences.APP_THEME_RES))
+                getActiveOption(SystemPreferences.APP_THEME_RES) ?: Theme.SPACE.code)
             { group, position ->
                 group.findViewById<Chip>(position).let { chip ->
                     when(chip.id) {
-                        R.string.setting_theme_light -> SystemPreferences.setPreference(
-                            SystemPreferences.APP_THEME_RES, Theme.LIGHT.code)
-                        R.string.setting_theme_dark -> SystemPreferences.setPreference(
-                            SystemPreferences.APP_THEME_RES, Theme.DARK.code)
+                        R.string.setting_theme_mars -> SystemPreferences.setPreference(
+                            SystemPreferences.APP_THEME_RES, Theme.MARS.code)
+                        else -> SystemPreferences.setPreference(
+                            SystemPreferences.APP_THEME_RES, Theme.SPACE.code)
                     }
                 }
                 view.updateUi()
             })
             add(SettingsListItem(
-                R.layout.settings_list_card,
+                R.string.setting_font_title,
                 listOf(
-                    SettingsListItem.Option(R.string.setting_font_default),
-                    SettingsListItem.Option(R.string.setting_font_montserrat),
-                    SettingsListItem.Option(R.string.setting_font_aguda)
+                    SettingsListItem.OptionWithResource(R.string.setting_font_aguda, R.font.aguda_regular)
                 ),
-                getActiveOption(SystemPreferences.APP_FONT_RES)))
+                getActiveOption(SystemPreferences.APP_FONT_RES) ?: R.string.setting_font_aguda))
         }
 
     private fun getActiveOption(key: String): Int? {
