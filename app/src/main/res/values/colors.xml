@@ -10,5 +10,5 @@
     <color name="white">#FFFFFFFF</color>
 
 
-    <color name="bottom_sheet_background">#f6f6fa</color>
+    <color name="bottom_sheet_background">?attr/backgroundColor</color>
 </resources>
